@@ -159,7 +159,7 @@
 		async function fetchData() {
 			try {
 				const res = await fetch(
-					`https://docs.google.com/spreadsheets/d/12uhd6skfyO_4KEBS1DJLjBXp8LevTLPa78brHmwZQso/gviz/tq?tqx=out:csv&_=${Date.now()}`,
+					`https://docs.google.com/spreadsheets/d/12uhd6skfyO_4KEBS1DJLjBXp8LevTLPa78brHmwZQso/export?format=csv&_=${Date.now()}`,
 					{ cache: "no-store" }
 				);
 				if (!res.ok) throw new Error("Network error");

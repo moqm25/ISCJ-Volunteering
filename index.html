@@ -1,246 +1,216 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
-		<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
-		<title>ISCJ — Upcoming Events</title>
-		<!-- Fonts & Tailwind -->
-		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet" />
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script>
-			tailwind.config = { darkMode: "class" };
-			if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-				document.documentElement.classList.add("dark");
-			}
-		</script>
-		<style>
-			:root {
-				--accent: #0b3d91;
-				--accent-hover: #102b6c;
-			}
-			.text-accent {
-				color: var(--accent);
-			}
-			.bg-accent {
-				background-color: var(--accent);
-			}
-			.hover\:text-accent:hover {
-				color: var(--accent);
-			}
-			.dark .text-accent,
-			.dark .hover\:text-accent:hover {
-				color: #3b82f6;
-			}
-			.dark .bg-accent {
-				background-color: #1e3a8a;
-			}
-			.dark .hover\:bg-accent:hover {
-				background-color: #1e40af;
-			}
-		</style>
-		<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-	</head>
-	<body class="flex flex-col min-h-screen font-sans bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors">
-		<!-- NAV -->
-		<nav class="bg-white dark:bg-gray-800 shadow-md transition-colors">
-			<div class="container mx-auto px-6 py-4 flex items-center justify-between">
-				<a href="./index.html" class="flex items-center space-x-2"
-					><img src="./assets/logo.png" class="h-12" alt="ISCJ" /><span class="text-3xl font-extrabold font-cinzel text-accent"
-						>ISCJ</span
-					></a
-				>
-				<div class="flex items-center">
-					<button id="theme-toggle" class="mr-4 text-gray-600 dark:text-gray-300 focus:outline-none">
-						<svg id="icon-sun" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m0-13.364l1.414 1.414M17.95 17.95l1.414 1.414M12 8a4 4 0 100 8 4 4 0 000-8z" />
-						</svg>
-						<svg id="icon-moon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-						</svg>
-					</button>
-					<button id="nav-toggle" class="md:hidden text-gray-600 dark:text-gray-300 focus:outline-none">
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-						</svg>
-					</button>
-					<ul id="nav-menu" class="hidden md:flex space-x-8">
-						<li><a href="https://www.iscj.org" class="hover:text-accent">ISCJ</a></li>
-						<li><a href="https://lit.iscj.org" class="hover:text-accent">LIT</a></li>
-					</ul>
-				</div>
-			</div>
-			<div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 transition-colors">
-				<ul class="px-6 pb-4 space-y-2">
-					<li><a href="https://www.iscj.org" class="block hover:text-accent">ISCJ</a></li>
-					<li><a href="https://lit.iscj.org" class="block hover:text-accent">LIT</a></li>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+	<title>ISCJ — Upcoming Volunteering Opportunities</title>
+	<!-- Fonts & Tailwind -->
+	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet" />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = { darkMode: "class" };
+		if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+			document.documentElement.classList.add("dark");
+		} else {
+			document.documentElement.classList.remove("dark");
+		}
+	</script>
+	<style>
+		:root {
+			--accent: #0b3d91;
+			--accent-hover: #102b6c;
+		}
+
+		.text-accent {
+			color: var(--accent);
+		}
+
+		.bg-accent {
+			background-color: var(--accent);
+		}
+
+		.hover\:text-accent:hover {
+			color: var(--accent);
+		}
+
+		.dark .text-accent,
+		.dark .hover\:text-accent:hover {
+			color: #3b82f6;
+		}
+
+		.dark .bg-accent {
+			background-color: #1e3a8a;
+		}
+
+		.dark .hover\:bg-accent:hover {
+			background-color: #1e40af;
+		}
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+
+<body
+	class="flex flex-col min-h-screen font-sans bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors">
+	<!-- NAV -->
+	<nav class="bg-white dark:bg-gray-800 shadow-md transition-colors">
+		<div class="container mx-auto px-6 py-4 flex items-center justify-between">
+			<a href="./index.html" class="flex items-center space-x-2"><img src="./assets/Logo.png" class="h-12"
+					alt="ISCJ" /><span class="text-3xl font-extrabold font-cinzel text-accent">ISCJ</span></a>
+			<div class="flex items-center">
+				<button id="theme-toggle" class="mr-4 text-gray-600 dark:text-gray-300 focus:outline-none">
+					<svg id="icon-sun" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m0-13.364l1.414 1.414M17.95 17.95l1.414 1.414M12 8a4 4 0 100 8 4 4 0 000-8z" />
+					</svg>
+					<svg id="icon-moon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+					</svg>
+				</button>
+				<button id="nav-toggle" class="md:hidden text-gray-600 dark:text-gray-300 focus:outline-none">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+						stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M4 6h16M4 12h16M4 18h16" />
+					</svg>
+				</button>
+				<ul id="nav-menu" class="hidden md:flex space-x-8">
+					<li><a href="https://www.iscj.org" class="hover:text-accent">ISCJ</a></li>
+					<li><a href="https://lit.iscj.org" class="hover:text-accent">LIT</a></li>
 				</ul>
 			</div>
-		</nav>
-		<!-- HERO -->
-		<header class="bg-cover bg-center" style="background-image: url('./assets/masjid.png')">
-			<div class="bg-black bg-opacity-70">
-				<div class="container mx-auto px-6 py-24 text-center">
-					<h1 class="text-4xl md:text-6xl font-cinzel font-extrabold text-white uppercase tracking-wide drop-shadow-lg">Upcoming Events</h1>
-					<p class="mt-4 text-xl md:text-2xl text-gray-200 font-light">Stay in the loop & join our community gatherings</p>
-				</div>
+		</div>
+		<div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 transition-colors">
+			<ul class="px-6 pb-4 space-y-2">
+				<li><a href="https://www.iscj.org" class="block hover:text-accent">ISCJ</a></li>
+				<li><a href="https://lit.iscj.org" class="block hover:text-accent">LIT</a></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- HERO -->
+	<header class="bg-cover bg-center" style="background-image: url('./assets/masjid.png')">
+		<div class="bg-black bg-opacity-70">
+			<div class="container mx-auto px-6 py-24 text-center">
+				<h1
+					class="text-4xl md:text-6xl font-cinzel font-extrabold text-white uppercase tracking-wide drop-shadow-lg">
+					Upcoming Volunteering Opportunities</h1>
+				<p class="mt-4 text-xl md:text-2xl text-gray-200 font-light">Stay in the loop & volunteer with our
+					community
+				</p>
 			</div>
-		</header>
-		<!-- FILTER BAR -->
-		<section class="bg-white dark:bg-gray-900 py-8 border-b border-gray-200 dark:border-gray-700">
-			<div class="container mx-auto px-6 flex flex-col md:flex-row md:items-end gap-4">
-				<div class="flex-1">
-					<label class="block text-sm font-medium mb-1" for="search">Search events</label>
-					<input
-						id="search"
-						type="text"
-						placeholder="Keyword…"
-						class="w-full px-4 py-2 rounded-lg border dark:bg-gray-800 dark:border-gray-600 focus:ring-2 focus:ring-accent focus:outline-none" />
-				</div>
-				<div>
-					<label class="block text-sm font-medium mb-1" for="gender">Gender</label>
-					<select
-						id="gender"
-						class="w-full px-4 py-2 rounded-lg border dark:bg-gray-800 dark:border-gray-600 focus:ring-2 focus:ring-accent focus:outline-none">
-						<option value="">All</option>
-						<option>Brothers Only</option>
-						<option>Sisters Only</option>
-						<option>Both Brothers & Sisters</option>
-					</select>
-				</div>
-				<div>
-					<label class="block text-sm font-medium mb-1" for="age">Age Group</label>
-					<select
-						id="age"
-						class="w-full px-4 py-2 rounded-lg border dark:bg-gray-800 dark:border-gray-600 focus:ring-2 focus:ring-accent focus:outline-none">
-						<option value="">All</option>
-						<option>Elementary School</option>
-						<option>Middle School</option>
-						<option>High School</option>
-						<option>College</option>
-						<option>Adults</option>
-						<option>Elders</option>
-						<option>Mothers</option>
-						<option>Fathers</option>
-						<option>Children 0-5</option>
-					</select>
-				</div>
-				<button id="clear-filters" class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-accent-hover mt-2 md:mt-0">Clear</button>
+		</div>
+	</header>
+	<!-- FILTER BAR -->
+	<section class="bg-white dark:bg-gray-900 py-8 border-b border-gray-200 dark:border-gray-700">
+		<div class="container mx-auto px-6 flex flex-col md:flex-row md:items-end gap-4">
+			<div class="flex-1">
+				<label class="block text-sm font-medium mb-1" for="search">Search events</label>
+				<input id="search" type="text" placeholder="Keyword…"
+					class="w-full px-4 py-2 rounded-lg border dark:bg-gray-800 dark:border-gray-600 focus:ring-2 focus:ring-accent focus:outline-none" />
 			</div>
-		</section>
-		<!-- EVENTS -->
-		<main class="flex-grow py-16 bg-gray-50 dark:bg-gray-800 transition-colors">
-			<div class="container mx-auto px-6" id="events"><p class="text-center">Loading events…</p></div>
-		</main>
-		<!-- FOOTER -->
-		<footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-auto transition-colors">
-			<div class="container mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between">
-				<p class="text-gray-600 dark:text-gray-400">© 2025 ISCJ</p>
-				<div class="flex space-x-4 mt-4 md:mt-0">
-					<a href="https://www.facebook.com/ISCJ1" target="_blank" class="hover:text-accent">Facebook</a
-					><a href="https://www.instagram.com/iscj_official/" target="_blank" class="hover:text-accent">Instagram</a
-					><a href="https://www.youtube.com/user/iscjtv/videos" target="_blank" class="hover:text-accent">YouTube</a>
-				</div>
+			<button id="clear-filters"
+				class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-accent-hover mt-2 md:mt-0">Clear</button>
+		</div>
+	</section>
+	<!-- EVENTS -->
+	<main class="flex-grow py-16 bg-gray-50 dark:bg-gray-800 transition-colors">
+		<div class="container mx-auto px-6" id="events">
+			<p class="text-center">Loading events…</p>
+		</div>
+	</main>
+	<!-- FOOTER -->
+	<footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-auto transition-colors">
+		<div class="container mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between">
+			<p class="text-gray-600 dark:text-gray-400">© 2026 ISCJ</p>
+			<div class="flex space-x-4 mt-4 md:mt-0">
+				<a href="https://www.facebook.com/ISCJ1" target="_blank" class="hover:text-accent">Facebook</a><a
+					href="https://www.instagram.com/iscj_official/" target="_blank"
+					class="hover:text-accent">Instagram</a><a href="https://www.youtube.com/user/iscjtv/videos"
+					target="_blank" class="hover:text-accent">YouTube</a>
 			</div>
-		</footer>
-		<!-- SCRIPTS -->
-		<script>
-			// Responsive nav & theme toggle
-			document.getElementById("nav-toggle").addEventListener("click", () => document.getElementById("mobile-menu").classList.toggle("hidden"));
-			const htmlEl = document.documentElement;
-			const themeToggle = document.getElementById("theme-toggle");
-			const iconSun = document.getElementById("icon-sun");
-			const iconMoon = document.getElementById("icon-moon");
-			function updateIcons() {
-				htmlEl.classList.contains("dark")
-					? (iconSun.classList.remove("hidden"), iconMoon.classList.add("hidden"))
-					: (iconSun.classList.add("hidden"), iconMoon.classList.remove("hidden"));
-			}
+		</div>
+	</footer>
+	<!-- SCRIPTS -->
+	<script>
+		// Responsive nav & theme toggle
+		document.getElementById("nav-toggle").addEventListener("click", () => document.getElementById("mobile-menu").classList.toggle("hidden"));
+		const htmlEl = document.documentElement;
+		const themeToggle = document.getElementById("theme-toggle");
+		const iconSun = document.getElementById("icon-sun");
+		const iconMoon = document.getElementById("icon-moon");
+		function updateIcons() {
+			htmlEl.classList.contains("dark")
+				? (iconSun.classList.remove("hidden"), iconMoon.classList.add("hidden"))
+				: (iconSun.classList.add("hidden"), iconMoon.classList.remove("hidden"));
+		}
+		updateIcons();
+		themeToggle.addEventListener("click", () => {
+			const d = htmlEl.classList.toggle("dark");
+			localStorage.theme = d ? "dark" : "light";
 			updateIcons();
-			themeToggle.addEventListener("click", () => {
-				const d = htmlEl.classList.toggle("dark");
-				localStorage.theme = d ? "dark" : "light";
-				updateIcons();
-			});
+		});
 
-			// Data & rendering
-			let rawData = [];
-			const container = document.getElementById("events");
-			async function fetchData() {
-				try {
-					const res = await fetch(
-						"https://docs.google.com/spreadsheets/d/1vCXq-GixliHDxt83SZQFSjqww5UHkfxdvCeRRdL4TLk/export?format=csv&gid=0"
-					);
-					if (!res.ok) throw new Error("Network error");
-					const csv = await res.text();
-					rawData = Papa.parse(csv, { header: true, skipEmptyLines: true }).data;
-					render();
-				} catch (e) {
-					console.error(e);
-					container.innerHTML = '<p class="text-center text-red-600">Failed to load events.</p>';
-				}
-			}
-
-			function matchesFilters(item) {
-				const q = document.getElementById("search").value.toLowerCase();
-				const g = document.getElementById("gender").value.toLowerCase();
-				const a = document.getElementById("age").value.toLowerCase();
-				let ok = true;
-				if (q) {
-					ok &&= Object.values(item).some((v) => v && v.toLowerCase().includes(q));
-				}
-				if (g) {
-					ok &&= item["Gender"].toLowerCase().includes(g);
-				}
-				if (a) {
-					ok &&= item["Age Group"].toLowerCase().includes(a);
-				}
-				return ok;
-			}
-
-			function render() {
-				const data = rawData.filter(matchesFilters);
-				if (!data.length) {
-					container.innerHTML = '<p class="text-center">No events match your criteria.</p>';
-					return;
-				}
-				const grid = document.createElement("div");
-				grid.className = "grid gap-8 md:grid-cols-2 xl:grid-cols-3";
-				data.forEach((obj) => {
-					const card = document.createElement("div");
-					card.className = "bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 flex flex-col gap-4";
-					const btn = obj["Registration Link"]
-						? `<a href="${obj["Registration Link"]}" target="_blank" class="inline-block px-5 py-2 bg-accent text-white rounded-md hover:bg-accent-hover">Register</a>`
-						: `<span class="text-sm font-medium text-accent">No registration required</span>`;
-					card.innerHTML = `<h2 class="text-2xl font-semibold text-accent font-cinzel">${
-						obj["Event Name"]
-					}</h2><div class="text-sm text-gray-600 dark:text-gray-400"><span><strong>Date:</strong> ${
-						obj["Event Date"]
-					}</span><br><span><strong>Time:</strong> ${obj["Event Time"]}</span>${
-						obj["Event Location"] ? `<br><span><strong>Location:</strong> ${obj["Event Location"]}</span>` : ""
-					}${obj["Age Group"] ? `<br><span><strong>Age Group:</strong> ${obj["Age Group"]}</span>` : ""}${
-						obj["Gender"] ? `<br><span><strong>Gender:</strong> ${obj["Gender"]}</span>` : ""
-					}</div><p class="flex-grow">${obj["Event Description"]}</p>${btn}`;
-					grid.appendChild(card);
-				});
-				container.innerHTML = "";
-				container.appendChild(grid);
-			}
-
-			// Elastic-style search (front-end)
-			["search", "gender", "age"].forEach((id) => document.getElementById(id).addEventListener("input", render));
-			document.getElementById("clear-filters").addEventListener("click", () => {
-				document.getElementById("search").value = "";
-				document.getElementById("gender").value = "";
-				document.getElementById("age").value = "";
+		// Data & rendering
+		let rawData = [];
+		const container = document.getElementById("events");
+		async function fetchData() {
+			try {
+				const res = await fetch(
+					"https://docs.google.com/spreadsheets/d/e/2PACX-1vT6GSdgpuvcaoPC0evASt26y0Cf2Jj0Dn9Vy0vJmTZavOTl1fyAXq07z97jJcV1gTY64-7d08rybbZl/pub?output=csv"
+				);
+				if (!res.ok) throw new Error("Network error");
+				const csv = await res.text();
+				rawData = Papa.parse(csv, { header: true, skipEmptyLines: true }).data;
 				render();
+			} catch (e) {
+				console.error(e);
+				container.innerHTML = '<p class="text-center text-red-600">Failed to load events.</p>';
+			}
+		}
+
+		function matchesFilters(item) {
+			const q = document.getElementById("search").value.toLowerCase();
+			if (!q) return true;
+			return Object.values(item).some((v) => v && v.toLowerCase().includes(q));
+		}
+
+		function render() {
+			const data = rawData.filter(matchesFilters);
+			if (!data.length) {
+				container.innerHTML = '<p class="text-center">No events match your criteria.</p>';
+				return;
+			}
+			const grid = document.createElement("div");
+			grid.className = "grid gap-8 md:grid-cols-2 xl:grid-cols-3";
+			data.forEach((obj) => {
+				const card = document.createElement("div");
+				card.className = "bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 flex flex-col gap-4";
+				const rawLink = (obj["LINK"] || "").trim();
+				const hasLink = rawLink && !["tba", "tbd"].includes(rawLink.toLowerCase());
+				const link = hasLink
+					? `<a href="${rawLink}" target="_blank" class="inline-block px-5 py-2 bg-accent text-white rounded-md hover:bg-accent-hover text-center">Volunteer</a>`
+					: `<span class="text-sm font-medium text-accent italic">Volunteering link will be posted soon</span>`;
+				card.innerHTML = `<h2 class="text-2xl font-semibold text-accent font-cinzel">${obj["EVENT"] || ""
+					}</h2><div class="text-sm text-gray-600 dark:text-gray-400"><span><strong>Date:</strong> ${obj["DATES"] || "TBA"
+					}</span><br><span><strong>Time:</strong> ${obj["TIME"] || "TBA"
+					}</span></div><p class="flex-grow">${obj["DETAILS"] || ""}</p>${link}`;
+				grid.appendChild(card);
 			});
-			fetchData();
-		</script>
-	</body>
+			container.innerHTML = "";
+			container.appendChild(grid);
+		}
+
+		// Live search
+		document.getElementById("search").addEventListener("input", render);
+		document.getElementById("clear-filters").addEventListener("click", () => {
+			document.getElementById("search").value = "";
+			render();
+		});
+		fetchData();
+	</script>
+</body>
+
 </html>
